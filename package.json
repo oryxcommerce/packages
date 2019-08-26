@@ -1,0 +1,21 @@
+{
+  "name": "packages",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oryxcommerce/packages.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  },
+  "scripts": {
+    "publish": "lerna publish",
+    "lint": "yarn eslint '**/*.{ts,tsx}'",
+    "check": "lerna run check",
+    "release": "lerna publish",
+    "tophat": "node ./bin/tophat.js"
+  }
+}

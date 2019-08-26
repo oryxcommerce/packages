@@ -1,0 +1,13 @@
+{
+  "name": "@oryxcommerce/scheduler",
+  "version": "1.0.0",
+  "description": "Oryx scheduler for our Bull.js & Google PubSub",
+  "main": "index.js",
+  "repository": "https://github.com/oryxcommerce/packages",
+  "author": "David Lemarier <david@oryxcommerce.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bull": "^3.10.0",
+    "human-interval": "^0.1.6"
+  }
+}
