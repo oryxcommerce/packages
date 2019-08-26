@@ -14,7 +14,7 @@ Each package has its own `README` and documentation describing usage.
 
 | package |     |     |
 | ------- | --- | --- |
-| address | [directory](packages/scheduler) | [![npm version](https://badge.fury.io/js/%40oryxcommerce%2Fscheduler.svg)](https://badge.fury.io/js/%40oryxcommerce%2Fscheduler)
+| scheduler | [directory](packages/scheduler) | [![npm version](https://badge.fury.io/js/%40oryxcommerce%2Fscheduler.svg)](https://badge.fury.io/js/%40oryxcommerce%2Fscheduler)
 
 ## License
 
