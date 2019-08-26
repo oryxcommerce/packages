@@ -13,11 +13,14 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "lerna": "^3.16.4",
+    "eslint": "^5.16.0",
+    "eslint-plugin-shopify": "30.0.1",
+    "prettier": "^1.14.0"
   },
   "scripts": {
     "publish": "lerna publish",
-    "lint": "yarn eslint '**/*.{ts,tsx}'",
+    "lint": "eslint '**/*.js'",
     "check": "lerna run check",
     "release": "lerna publish",
     "tophat": "node ./bin/tophat.js"
