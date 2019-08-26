@@ -1,13 +1,24 @@
 {
   "name": "@oryxcommerce/scheduler",
   "version": "1.0.0",
+  "license": "MIT",
   "description": "Oryx scheduler for our Bull.js & Google PubSub",
   "main": "index.js",
-  "repository": "https://github.com/oryxcommerce/packages",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oryxcommerce/packages.git"
+  },
+  "bugs": {
+    "url": "https://github.com/oryxcommerce/packages/issues"
+  },
+  "homepage": "https://github.com/oryxcommerce/packages/blob/master/packages/scheduler/README.md",
   "author": "David Lemarier <david@oryxcommerce.com>",
-  "license": "MIT",
   "dependencies": {
     "bull": "^3.10.0",
     "human-interval": "^0.1.6"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@shopify:registry": "https://registry.npmjs.org"
   }
 }
