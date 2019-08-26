@@ -14,11 +14,11 @@
   "homepage": "https://github.com/oryxcommerce/packages/blob/master/packages/scheduler/README.md",
   "author": "David Lemarier <david@oryxcommerce.com>",
   "dependencies": {
+    "@google-cloud/pubsub": "^0.31.0",
     "bull": "^3.10.0",
     "human-interval": "^0.1.6"
   },
   "publishConfig": {
-    "access": "public",
-    "@shopify:registry": "https://registry.npmjs.org"
+    "access": "public"
   }
 }
