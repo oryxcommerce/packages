@@ -1,6 +1,19 @@
 const Queue = require('bull');
 const {PubSub} = require('@google-cloud/pubsub');
 const humanInterval = require('human-interval');
+const defaults = require('lodash.defaults');
+
+const defaultOptions = {
+  delay: 'now',
+  pubsub: {
+    projectId: null,
+    topic: null,
+  },
+  bull: {
+    queueName: null,
+    redis: 'redis://127.0.0.1:6379',
+  },
+};
 
 const sendToBull = async ({queueName, data, server, delay}) => {
   // should be scheduled inside bull
@@ -31,26 +44,18 @@ const sendToPubSub = async ({projectId, topic, data}) => {
   return dataReturned || {};
 };
 
-const postMessage = async ({
-  data,
-  options = {
-    delay: 0,
-    pubsub: {
-      projectId: null,
-      topic: null,
-    },
-    bull: {
-      queueName: null,
-      redis: 'redis://127.0.0.1:6379',
-    },
-  },
-}) => {
-  let {delay} = options;
-  const {projectId, topic} = options.pubsub;
-  const {redis: server, queueName} = options.bull;
+const postMessage = async ({data, options = defaultOptions}) => {
+  const builtOptions = defaults(options, defaultOptions);
+  let {delay} = builtOptions;
+  const {projectId, topic} = builtOptions.pubsub;
+  const {redis: server, queueName} = builtOptions.bull;
 
   // Convert delay to human readable
-  delay = humanInterval(delay) || 0;
+  if (typeof delay === 'string') {
+    // we strip `in ` because they seems to have some issue
+    delay = humanInterval(delay.replace('in ', '')) || 0;
+  }
+
   try {
     // should be scheduled inside bull
     if (delay > 0) {
@@ -62,20 +67,20 @@ const postMessage = async ({
         data: realData,
         delay,
       });
-      return {status: 'success', errors: null, type: 'bull', debug: bullData};
+      return {status: 'success', error: null, type: 'bull', debug: bullData};
     } else {
       // send directly to PubSub
       const pubSubData = await sendToPubSub({projectId, topic, data});
       return {
         status: 'success',
-        errors: null,
+        error: null,
         type: 'pubsub',
-        debug: {id: pubSubData},
+        debug: pubSubData,
       };
     }
   } catch (error) {
     // make sure to return at least an empty json
-    return {status: 'failed', errors: error.type, debug: error};
+    return {status: 'failed', error};
   }
 };
 

@@ -16,7 +16,8 @@
   "dependencies": {
     "@google-cloud/pubsub": "^0.31.0",
     "bull": "^3.10.0",
-    "human-interval": "^0.1.6"
+    "human-interval": "^0.1.6",
+    "lodash.defaults": "^4.2.0"
   },
   "publishConfig": {
     "access": "public"
